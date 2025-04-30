@@ -1,0 +1,15 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: array
+  - text: numpy.array
+  - text: numpy.ndarray
+  - text: list
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9673#comment
+status: Solved
+record: -1
+local_check: false

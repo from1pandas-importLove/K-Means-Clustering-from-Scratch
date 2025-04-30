@@ -1,0 +1,10 @@
+<div class="step-text">
+<p></p><p>When we add an array and a list together, the list is also treated as an array. However, we might not want the addition of a list and an array to yield the same result as the addition of two arrays.</p><p>Complete the <code class="java">custom_sum()</code> function that takes two arguments. The two arguments can only be of the following types:</p><ol><li><p>Two NumPy arrays;</p></li><li><p>A NumPy array and a list;</p></li><li><p>Two lists.</p></li></ol><p>In the first case, sum them and return the result. In the second case, return a string with the warning <code class="java">One argument is a list</code>, and in the last case, return <code class="java">Both arguments are lists, not arrays</code>.</p><p>All lists and arrays will be one-dimensional and of the same size. Note that you don't have to use any <code class="java">print()</code> statements in this task.</p><p>Below is an example of the input and the expected outputs:</p><pre><code class="java">Input: [1, 2, 3], [4, 5, 6]
+Expected Output: 'Both arguments are lists, not arrays'
+
+Input: np.array([1, 2, 3]), [4, 5, 6]
+Expected Output: 'One argument is a list'
+
+Input: np.array([1, 2, 3]), np.array([4, 5, 6])
+Expected Output: array([5, 7, 9])</code></pre><p><strong>Tip:</strong> You can check the variable type by calling <code class="java">isinstance(arg, type)</code>, which will return a boolean indicating whether the <code class="java">arg</code> has the specified <code class="java">type</code>. You can also use the <code class="java">type()</code> for type checking as mentioned in the theory.</p><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 15 seconds</font><br><br>
+</div>

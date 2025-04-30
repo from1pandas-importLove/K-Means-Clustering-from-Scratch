@@ -1,0 +1,28 @@
+type: table
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9675#comment
+status: Solved
+record: -1
+rows:
+  - More memory-efficient
+  - Slower than the other
+  - Can be either homogenous or heterogenous
+  - Can only contain the elements of the same type
+  - Optimized specifically for computations
+columns:
+  - List
+  - Array
+selected:
+  - - false
+    - false
+  - - false
+    - false
+  - - false
+    - false
+  - - false
+    - false
+  - - false
+    - false

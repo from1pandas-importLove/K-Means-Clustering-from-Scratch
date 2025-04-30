@@ -1,0 +1,26 @@
+type: matching
+captions:
+  - np.arange()
+  - np.zeros()
+  - np.linspace()
+  - np.ones()
+  - np.zeros_like()
+options:
+  - This method creates an array filled with zeros.
+  - This method creates an array filled with ones.
+  - This method returns an array of zeros with the same shape and type as a given array.
+  - This method returns an array with evenly space elements.
+  - This method creates an array with values within a given interval.
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/10079#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4

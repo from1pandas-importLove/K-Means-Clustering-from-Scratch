@@ -1,3 +1,5 @@
+from pyexpat import features
+
 import numpy as np
 from sklearn.datasets import load_wine
 from matplotlib import pyplot as plt
@@ -6,6 +8,47 @@ from sklearn.preprocessing import StandardScaler
 
 # scroll down to the bottom to implement your solution
 
+
+class CustomKMeans:
+    def __init__(self, k, max_iter=300, tol=1e-6):
+        self.k = k
+        self.centers = None
+        self.max_iter = max_iter
+        self.tol = tol
+
+
+    def fit(self, X):
+        n_samples, n_features = X.shape
+
+        # rng = np.random.default_rng(seed=42)
+        # initial_indices = rng.choice(n_samples, size=self.k, replace=False)
+        # self.centers = X[initial_indices]
+
+        self.centers = X[:self.k]
+
+        for _ in range(self.max_iter):
+            labels = self.predict(X)
+            old_centers = self.centers.copy()
+            self.centers = self.calculate_new_centers(X, labels)
+            center_shift = np.linalg.norm(old_centers - self.centers)
+            if center_shift < self.tol:
+                break
+
+        return self
+
+    def predict(self, X):
+        distances = np.linalg.norm(X[:, np.newaxis] - self.centers, axis=2)
+        return np.argmin(distances, axis=1)
+
+    def calculate_new_centers(self, X, labels):
+        n_features = X.shape[1]
+        centroids = np.zeros((self.k, n_features))
+
+        for i in range(self.k):
+            cluster_points = X[labels == i]
+            centroids[i] = cluster_points.mean(axis=0)
+
+        return centroids
 
 def plot_comparison(data: np.ndarray, predicted_clusters: np.ndarray, true_clusters: np.ndarray = None,
                     centers: np.ndarray = None, show: bool = True):
@@ -47,6 +90,7 @@ def plot_comparison(data: np.ndarray, predicted_clusters: np.ndarray, true_clust
         plt.show()
 
 
+
 if __name__ == '__main__':
 
     # Load data
@@ -67,4 +111,9 @@ if __name__ == '__main__':
     scaler = StandardScaler()
     X_full = scaler.fit_transform(X_full)
 
-    # write your code here
+    kmeans = CustomKMeans(2)
+    kmeans.fit(X_full)
+    labels = kmeans.predict(X_full[:10])
+    center = kmeans.centers
+    print(labels.tolist())
+

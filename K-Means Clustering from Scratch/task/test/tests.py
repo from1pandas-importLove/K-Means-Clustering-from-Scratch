@@ -3,10 +3,10 @@ from hstest.stage_test import List
 from utils.utils import full_check, get_list
 
 # The source data I will test on
-true_data = [2, 0, 0, 2, 0, 0, 2, 0, 2, 2]
+true_data = [0, 0, 1, 0, 0, 0, 0, 1, 0, 1]
 
 
-class Tests1(StageTest):
+class Tests3(StageTest):
 
     def generate(self) -> List[TestCase]:
         return [TestCase(time_limit=1000000)]
@@ -27,7 +27,7 @@ class Tests1(StageTest):
         except Exception:
             return CheckResult.wrong('Seems that data output is in wrong format!')
 
-        error = 'Incorrect cluster labels. Check your find_nearest_center function.'
+        error = 'Incorrect cluster labels. Check your fit and predict functions.'
         check_result = full_check(student, true_data, '', tolerance=0, error_str=error)
         if check_result:
             return check_result
@@ -36,4 +36,4 @@ class Tests1(StageTest):
 
 
 if __name__ == '__main__':
-    Tests1().run_tests()
+    Tests3().run_tests()

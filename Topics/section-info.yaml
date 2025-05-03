@@ -1,3 +1,4 @@
 content:
   - Intro to NumPy
   - Array creation and indexing
+  - Operations with an array

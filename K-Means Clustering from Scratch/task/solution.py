@@ -50,6 +50,11 @@ class CustomKMeans:
 
         return centroids
 
+    def inertia(self, X):
+        labels = self.predict(X)
+        distances = np.linalg.norm(X - self.centers[labels], axis=1)
+        return np.sum(distances ** 2)
+
 def plot_comparison(data: np.ndarray, predicted_clusters: np.ndarray, true_clusters: np.ndarray = None,
                     centers: np.ndarray = None, show: bool = True):
 
@@ -90,6 +95,23 @@ def plot_comparison(data: np.ndarray, predicted_clusters: np.ndarray, true_clust
         plt.show()
 
 
+def calculate_inertias(model_class, X, k_range):
+    inertia_list = []
+    for k in k_range:
+        model = model_class(k)
+        model.fit(X)
+        inertia_list.append(float(model.inertia(X)))
+    return inertia_list
+
+def plot_elbow_curve(k_values, inertia_list):
+    plt.figure(figsize=(8, 5))
+    plt.plot(k_values, inertia_list, marker='o')
+    plt.title('Elbow Method for Optimal k')
+    plt.xlabel('Number of Clusters (k)')
+    plt.ylabel('Inertia')
+    plt.xticks(k_values)
+    plt.grid(True)
+    plt.show()
 
 if __name__ == '__main__':
 
@@ -111,9 +133,10 @@ if __name__ == '__main__':
     scaler = StandardScaler()
     X_full = scaler.fit_transform(X_full)
 
-    kmeans = CustomKMeans(2)
-    kmeans.fit(X_full)
-    labels = kmeans.predict(X_full[:10])
-    center = kmeans.centers
-    print(labels.tolist())
+    k_values = list(range(2, 11))
+    inertias = calculate_inertias(CustomKMeans, X_full, k_values)
+    print(inertias)
+    # plot_elbow_curve(k_values, inertias)
+
+
 

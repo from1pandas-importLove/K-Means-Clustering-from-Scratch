@@ -5,6 +5,7 @@ from sklearn.datasets import load_wine
 from matplotlib import pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
 
 # scroll down to the bottom to implement your solution
 
@@ -102,6 +103,8 @@ def calculate_inertias(model_class, X, k_range):
         model.fit(X)
         inertia_list.append(float(model.inertia(X)))
     return inertia_list
+
+def
 
 def plot_elbow_curve(k_values, inertia_list):
     plt.figure(figsize=(8, 5))

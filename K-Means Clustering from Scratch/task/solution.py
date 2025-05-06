@@ -56,6 +56,10 @@ class CustomKMeans:
         distances = np.linalg.norm(X - self.centers[labels], axis=1)
         return np.sum(distances ** 2)
 
+    def silhoete_coeff(self, X):
+        labels = self.predict(X)
+        return silhouette_score(X, labels)
+
 def plot_comparison(data: np.ndarray, predicted_clusters: np.ndarray, true_clusters: np.ndarray = None,
                     centers: np.ndarray = None, show: bool = True):
 
@@ -104,7 +108,13 @@ def calculate_inertias(model_class, X, k_range):
         inertia_list.append(float(model.inertia(X)))
     return inertia_list
 
-def
+def calculate_silhoete_coeff(model_class, X, k_range):
+    silhoete_list = []
+    for k in k_range:
+        model = model_class(k)
+        model.fit(X)
+        silhoete_list.append(float(model.silhoete_coeff(X)))
+    return silhoete_list
 
 def plot_elbow_curve(k_values, inertia_list):
     plt.figure(figsize=(8, 5))
@@ -138,7 +148,11 @@ if __name__ == '__main__':
 
     k_values = list(range(2, 11))
     inertias = calculate_inertias(CustomKMeans, X_full, k_values)
-    print(inertias)
+    silhoete_scores = calculate_silhoete_coeff(CustomKMeans, X_full, k_values)
+
+    print(silhoete_scores)
+
+    # print(inertias)
     # plot_elbow_curve(k_values, inertias)
 
 

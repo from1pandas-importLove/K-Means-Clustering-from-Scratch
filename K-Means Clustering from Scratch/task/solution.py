@@ -150,10 +150,23 @@ if __name__ == '__main__':
     inertias = calculate_inertias(CustomKMeans, X_full, k_values)
     silhoete_scores = calculate_silhoete_coeff(CustomKMeans, X_full, k_values)
 
-    print(silhoete_scores)
-
+    # print(silhoete_scores)
     # print(inertias)
+    # 
     # plot_elbow_curve(k_values, inertias)
+    
+    k_means_custom = CustomKMeans(3)
+    k_means_custom.fit(X_full)
+    predicted_labels = k_means_custom.predict(X_full[:20])
+    print(predicted_labels.tolist())
+    # plot_comparison(X_full, predicted_labels, y_full)
+
+
+    
+    
+    
+
+    
 
 
 
